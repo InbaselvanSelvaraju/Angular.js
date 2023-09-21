@@ -1,0 +1,186 @@
+<div class="card p-2 m-4">
+    <div class="card-body">
+      <form class="row g-2" id="signupform" [formGroup]="user" (ngSubmit)="handlesubmit()">
+        <div
+          class="text-center fs-3 fw-bold border-bottom border-3 border-dark"
+        >
+        Update your detials
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="FIRSTNAME"
+              class="form-control"
+              name="firstName"
+              formControlName="firstName"
+              
+            />
+            <label class="form-label">FIRSTNAME</label>
+            <div *ngIf="user.get('firstname')?.invalid && user.get('lastname')?.touched">
+             
+              <span class="form-text text-danger" *ngIf="user.get('firstname')?.errors?.['required']" >please enter your firstname</span>
+              <span class="form-text text-danger" *ngIf="user.get('firstname')?.errors?.['minlength']" >please enter more than four charcter of your firstname</span>
+              <span class="form-text text-danger" *ngIf="user.get('firstname')?.errors?.['pattern']" >firstname enter alphabates only</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="LASTNAME"
+              name="lastName"
+              class="form-control"
+              formControlName="lastName"
+            />
+            <label class="form-label">LASTNAME</label>
+            <div *ngIf="user.get('lastname')?.invalid  && user.get('lastname')?.touched">
+                  <span class="form-text text-danger" *ngIf="user.get('lastname')?.errors?.['required']">please enter your lastname</span>
+                  <span class="form-text text-danger" *ngIf="user.get('lastname')?.errors?.['minlength']" >please enter more than four charcter of your lastname</span>
+                  <span class="form-text text-danger" *ngIf="user.get('lastname')?.errors?.['pattern']" >lastname enter alphabates only</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="date"
+              placeholder="DATE OF BIRTH"
+              name="dob"
+              class="form-control"
+              formControlName="dob"
+            />
+            <label class="form-label">DATE OF BIRTH</label>
+            <div *ngIf="user.get('dob')?.invalid  && user.get('dob')?.touched">
+                <span class="form-text text-danger"*ngIf="user.get('dob')?.errors?.['required']">please enter your dob</span>
+          </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <div class="form-control">
+             
+            
+              <div class="form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="gender"
+                  value="male"
+                  formControlName="gender"
+                />
+                <label class="form-check-label" for="gender">MALE</label>
+                <div *ngIf="user.get('gender')?.invalid && user.get('gender')?.touched">
+                    <span class="form-text text-danger"*ngIf="user.get('gender')?.errors?.['required']">plese enter your gender </span>
+             </div>
+              </div>
+              <div class="form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="gender"
+                  value="female"
+                  formControlName="gender"
+                />
+                <label class="form-check-label" for="gender">FEMALE</label>
+                <div *ngIf="user.get('gender')?.invalid && user.get('gender')?.touched">
+                    <span class="form-text text-danger" *ngIf="user.get('gender')?.errors?.['required']">plese enter your gender </span>
+             </div>
+              </div>
+             
+            </div>
+            <label for="gender">GENDER</label>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="PHONE"
+              name="PHONE"
+              class="form-control"
+              formControlName="phone"
+            />
+            <label class="form-label">PHONE</label>
+            <div *ngIf="user.get('phone')?.invalid && user.get('phone')?.touched">
+                   <span class="form-text text-danger" *ngIf="user.get('phone')?.errors?.['required']">plese enter your phone number</span>
+                   <span class="form-text text-danger" *ngIf="user.get('phone')?.errors?.['minlength'] || user.get('phone')?.errors?.['maxlength']"> phone number must enter 10digit</span>
+                  
+                   <span class="form-text text-danger" *ngIf="user.get('phone')?.errors?.['pattern']">plese enter valid phone number</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="email"
+              placeholder="E mail"
+              name=" Email"
+              class="form-control"
+              formControlName="email"
+            />
+            <label class="form-label">E mail</label>
+            <div *ngIf="user.get('email')?.invalid  && user.get('email')?.touched">
+                <span class="form-text text-danger" *ngIf="user.get('email')?.errors?.['required']">please enter your email</span>
+          </div>
+            <div *ngIf="user.get('email')?.invalid  && user.get('email')?.touched">
+                <span class="form-text text-danger" *ngIf="user.get('email')?.errors?.['email']">please enter your valid email id</span>
+          </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="PASSWORD"
+              name="PASSWORD"
+              class="form-control"
+              formControlName="password"
+            />
+            <label class="form-label">PASSWORD</label>
+            <div *ngIf="user.get('password')?.invalid  && user.get('password')?.touched">
+                <span class="form-text text-danger" *ngIf="user.get('password')?.errors?.['required']">please enter your password</span>
+          </div>
+            <div *ngIf="user.get('password')?.invalid  && user.get('password')?.touched">
+                <span class="form-text text-danger" *ngIf="user.get('password')?.errors?.['pattern']">please enter min 6 and max 16 charecter,one uppercase,one spacial characterand one numerical value</span>
+          </div>
+         
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="CONFIRMPASSWORD"
+              name="CONFIRMPASSWORD"
+              class="form-control"
+              formControlName="confirmPassword"
+            />
+            <label class="form-label">CONFIRMPASSWORD</label>
+            <div *ngIf="user.get('confirmpassword')?.invalid  && user.get('confirmpassword')?.touched">
+                <span class="form-text text-danger" *ngIf="user.get('confirmpassword')?.errors?.['required']">please enter your confirmpassword</span>
+          </div>
+         
+            <div *ngIf=" user.get('confirmpassword')?.touched && user.hasError('doesnotmatch')">
+             password and confirmpassword does not match
+            
+          </div>
+         
+          </div>
+        </div>
+        
+       
+        <div class="col-12">
+          <div class="d-grid gap-2 col-4 mx-auto">
+            <button type="submit" class="btn btn-primary">submit</button>
+            <button type="reset" class="btn btn-primary">reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <app-users-table  [users] = 'users'></app-users-table> -->
+  </div>
+
+

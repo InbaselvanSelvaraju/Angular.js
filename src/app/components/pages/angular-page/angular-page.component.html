@@ -1,0 +1,42 @@
+<div class="container mt-1">
+  <div class="p-5 bg-primary-subtle text-center">
+    <!-- binding is communication between TypeScript and HTML file -->
+    <!-- string interplation -->
+    <h1>{{ WelcomeMessage }}</h1>
+    <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+    <h1>{{ "INBAA" }}</h1>
+    <!-- This is Property Binding -->
+    <div [innerHTML]="PropertyBinding"></div>
+    <div [innerText]="PropertyDiscription"></div>
+    <button [disabled]="DisabaledButton" [ngClass]="btnclass" class="btn">
+      {{ DisabaledButton ? "Disabled" : "Enabled" }}
+    </button>
+    <!-- Event Binding -->
+    <div>
+      <input type="text" (input)="getInputValue($event)" />
+    </div>
+    <p>{{ InputValue }}</p>
+    <!-- Two Way Binding must Import FormsModule -->
+
+    <div>
+      <input type="text" [(ngModel)]="InputValue" [style.border]="styles" />
+    </div>
+    <p>{{ InputValue }}</p>
+  </div>
+</div>
+
+<div class="container mt-1">
+  <div class="p-5 bg-primary-subtle text-center">
+    <button class="btn btn-primary" (click)="showfun($event)">Show</button>
+    <div *ngIf="show">
+      A structural directive that conditionally includes a template based on the
+      value of an expression coerced to Boolean. When the expression evaluates
+      to true, Angular renders the template provided in a then clause, and when
+      false or null, Angular renders the template provided in an optional else
+      clause. The default template for the else clause is blank.
+    </div>
+    <ul *ngFor="let name of names">
+           {{name}}
+    </ul>
+  </div>
+</div>

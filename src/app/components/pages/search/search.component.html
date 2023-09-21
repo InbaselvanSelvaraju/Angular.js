@@ -1,0 +1,21 @@
+<!-- <div class=" p-3 mt-3 " [ngStyle]="searchPageStyle"> -->
+<div class="p-3 mt-3" [@divstate] >
+  <!-- <input type="text" class="form-control " placeholder="SEARCH MOVIES" [(ngModel)]="searchMovies" (ngModelChange)="onSearch()"
+    [ngClass]="searchMovies? 'search' : '' "> -->
+  <input
+    type="text"
+    class="form-control"
+    placeholder="SEARCH MOVIES"
+    [(ngModel)]="searchMovies"
+    (ngModelChange)="onSearch()"
+    divstate = "normal"
+  />
+  <div class="row">
+    <app-movie-card
+      class="col-3 p-3"
+      *ngFor="let movie of results.results"
+      [movie]="movie"
+      [@list] = 'state'
+    ></app-movie-card>
+  </div>
+</div>

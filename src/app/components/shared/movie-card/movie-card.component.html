@@ -1,0 +1,16 @@
+<div class="col" >
+    <div class="card">
+        <img src="{{movieImages}}" class="card-img-top" alt="..." (error)="defaultImage($event)">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.original_title | uppercase}}</h5>
+          <p class="card-text" 
+          *ShowMoreDirectivesDirective="ShowDescrp">
+            {{movie.overview}}
+            <!-- {{ ShowDescrp? movie.overview :movie.overview |shorten:150 }} -->
+          </p>
+            <button  class="btn btn-link" (click)="ShowDescription()" *ngIf="movie.overview.length > 150"> {{ShowDescrp? "show less":"show more"}}</button>
+          <p class="card-text">{{"release date"  | titlecase}} : {{releasedDetials | date}}</p>
+          <a (click) = WatchNow(movie) [routerLink]="['/movies'] "class="btn btn-primary">Watch Now</a >
+        </div>
+      </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="card mt-4">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.no</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">DOB</th>
+          <th scope="col">email</th>
+          <th scope="col">phone</th>
+          <th scope="col">gender</th>
+          <th scope="col" colspan="2">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users?.data">
+          <th scope="row">1</th>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.dob }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.gender }}</td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="['update',user._id]">
+              Update
+            </button>
+          </td>
+          <td><button class="btn btn-primary" [routerLink]="['delete',user._id]">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
