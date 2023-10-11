@@ -15,7 +15,7 @@ export class UserService {
     );
   }
   signUp(postdata : User) {
-    return this.http.post<User>('http://localhost:4000/users',postdata).pipe(
+    return this.http.post<User>('http://localhost:4000/users/',postdata).pipe(
       map((responseData) => responseData),
       catchError((err) => throwError(err))
     );

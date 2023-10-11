@@ -1,5 +1,5 @@
 export interface User{
-    _id : string;
+    _id? : string;
     email: string;
     firstName: string;
     lastName: string;
@@ -18,4 +18,26 @@ export interface AllUsers{
  data : Array<User>;
       
       
+}
+
+export interface SignUpUser{
+    data: {
+        _id : string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    
+    phone: number;
+    dob: string; 
+    }
+    status: String;
+   
+}
+export interface AuthResponse{
+    
+    stataus : String,
+    token: String,
+    expiresIn : Number
+   
 }

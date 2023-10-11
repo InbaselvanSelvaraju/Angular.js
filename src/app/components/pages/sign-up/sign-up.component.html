@@ -1,5 +1,8 @@
 <div class="card p-2 m-4">
-  <div class="card-body">
+  <div class="d-flex justify-content-center my-5 py-5 " *ngIf = "isLoading">
+    <app-loader></app-loader>
+  </div>
+  <div class="card-body" *ngIf = "!isLoading">
     <form
       class="row g-2"
       id="signupform"
@@ -9,6 +12,7 @@
       <div class="text-center fs-3 fw-bold border-bottom border-3 border-dark">
         SIGN UP
       </div>
+     
 
       <div class="col-12" *ngIf="error">
         <div class="text-center alert alert-danger">

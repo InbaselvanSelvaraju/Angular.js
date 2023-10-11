@@ -13,33 +13,37 @@ import { UsersComponent } from './components/pages/users/users.component';
 import { EditUsersComponent } from './components/pages/edit-users/edit-users.component';
 import { UsersTableComponent } from './components/shared/users-table/users-table.component';
 import { ViewUsersComponent } from './components/pages/view-users/view-users.component';
+import { LoginComponent } from './modules/user/login/login.component';
+import { UserAuthGuard } from './modules/user/user.guard';
 
 const routes: Routes = [
 
-  { path: '', component: AngularPageComponent },
+  { path: '', component: AngularPageComponent ,canActivate : [UserAuthGuard]},
   // {path:'',redirectTo:'home',pathMatch:'full'},            this is go to home page
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent,canActivate : [UserAuthGuard] },
   { path: 'tv', component: TVComponent },
   {
     path: 'movies', component: MoviesComponent,
-    children: [{ path: ':movieName/:id', component: HeroMovieCardComponent }]
+    children: [{ path: ':movieName/:id', component: HeroMovieCardComponent }],
+    canActivate : [UserAuthGuard]
   },
-  { path: 'sports', component: SportsComponent },
+  { path: 'sports', component: SportsComponent ,canActivate : [UserAuthGuard]},
   { path: 'signup', component: SignUpComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchComponent ,canActivate : [UserAuthGuard]},
   //   {path:'users',component:UsersComponent,
   // children:[
   //   {path:'',component:ViewUsersComponent},
   //   {path:'update-user/:userID',component:EditUsersComponent}]},
   {
     path: 'users',
-    loadChildren: () => import('./modules/user/user.module').then((module) => module.UserModule)
+    loadChildren: () => import('./modules/user/user.module').then((module) => module.UserModule),canActivate : [UserAuthGuard]
   },
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent ,canActivate : [UserAuthGuard]},
   {path: 'users',
-    loadChildren: () => import('./modules/movies/movies.module').then((module) => module.MoviesModule)
+    loadChildren: () => import('./modules/movies/movies.module').then((module) => module.MoviesModule),canActivate : [UserAuthGuard]
   },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent,canActivate : [UserAuthGuard] }
 ];
 
 

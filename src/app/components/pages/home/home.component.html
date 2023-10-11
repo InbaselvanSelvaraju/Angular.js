@@ -1,1 +1,139 @@
-<p>home works!</p>
+<div class="card p-2 m-4">
+    <div class="d-flex justify-content-center my-5 py-5 " *ngIf = "isLoading">
+      <app-loader></app-loader>
+    </div>
+    <div class="card-body" *ngIf = "!isLoading">
+      <form
+        class="row g-2"
+        id="productForm"
+        [formGroup]="product"
+        (ngSubmit)="handlesubmit()"
+      >
+        <div class="text-center fs-3 fw-bold border-bottom border-3 border-dark">
+          PRODUCT DETIALS
+        </div>
+       
+  
+        <div class="col-12" *ngIf="error">
+          <div class="text-center alert alert-danger">
+            {{ error }}
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="title"
+              class="form-control"
+              name="title"
+              formControlName="title"
+            />
+            <label class="form-label">title</label>
+            <div
+              *ngIf="
+                product.get('title')?.invalid && product.get('lastname')?.touched
+              "
+            >
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('title')?.errors?.['required']"
+                >please enter your title</span
+              >
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('title')?.errors?.['minlength']"
+                >please enter more than four charcter of your title</span
+              >
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('title')?.errors?.['pattern']"
+                >firstname enter alphabates only</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="number"
+              placeholder="price"
+              name="price"
+              class="form-control"
+              formControlName="price"
+            />
+            <label class="form-label">price</label>
+            <div
+              *ngIf="
+                product.get('price')?.invalid && product.get('price')?.touched
+              "
+            >
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('price')?.errors?.['required']"
+                >please enter your price</span
+              >
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('price')?.errors?.['minlength']"
+                >please enter more than four charcter of your price</span
+              >
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('price')?.errors?.['pattern']"
+                >price enter alphabates only</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="manufacturer"
+              name="manufacturer"
+              class="form-control"
+              formControlName="manufacturer"
+            />
+            <label class="form-label">manufacturer</label>
+            <div *ngIf="product.get('manufacturer')?.invalid && product.get('manufacturer')?.touched">
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('manufacturer')?.errors?.['required']"
+                >please enter your manufacturer</span
+              >
+            </div>
+          </div>
+        </div>
+       
+        <div class="col-12 col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              placeholder="description"
+              name="description"
+              class="form-control"
+              formControlName="description"
+            />
+            <label class="form-label">description</label>
+            <div *ngIf="product.get('description')?.invalid && product.get('description')?.touched">
+              <span
+                class="form-text text-danger"
+                *ngIf="product.get('description')?.errors?.['required']"
+                >plese enter your description number</span
+              >
+             
+            </div>
+          </div>
+        </div>
+        
+  
+        <div class="col-12">
+          <div class="d-grid gap-2 col-4 mx-auto">
+            <button type="submit" class="btn btn-primary">submit</button>
+            <button type="reset" class="btn btn-primary">reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

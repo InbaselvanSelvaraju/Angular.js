@@ -11,6 +11,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/interface/user.interface';
 import { UserAuthServices } from 'src/app/modules/user/userAuth.services';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -20,10 +21,10 @@ export class SignUpComponent {
   user: FormGroup;
   users: any;
   error!: String;
-
+  isLoading =  false;
   // FormGroup is whole content
   // FormControl is one element like first name
-  constructor(private authservice: UserAuthServices) {
+  constructor(private authservice: UserAuthServices, private router : Router) {
     this.user = new FormGroup(
       {
         firstName: new FormControl('', [
@@ -37,7 +38,7 @@ export class SignUpComponent {
           Validators.pattern("^[a-zA-Z-']+"),
         ]),
         dob: new FormControl('', [Validators.required]),
-        gender: new FormControl('male', [Validators.required]),
+        gender: new FormControl('', [Validators.required]),
         phone: new FormControl('', [
           Validators.required,
           Validators.minLength(10),
@@ -74,18 +75,23 @@ export class SignUpComponent {
     // console.log( this.user.value);
     // console.log( this.user);
     if (this.user.valid) {
+      this.isLoading = true;
       console.log(this.user.value);
       // this.http.post('https://sign-up-form-405d5-default-rtdb.firebaseio.com/users.json',this.user.value)
       // .subscribe((res)=> {
       //   console.log(res)
-      //   this.user.reset()
+        // this.user.reset()   
       // })
       this.authservice.signUp(this.user.value).subscribe(
         (res) => {
+          this.isLoading = false
+          this.router.navigate(["/users/login"])
+         this.user.reset() 
           console.log(res);
         },
         (error) => {
           this.error = error;
+          this.isLoading = false
         }
       );
       // this.post(this.user.value)

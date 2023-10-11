@@ -1,0 +1,37 @@
+<div class="card col-6 d-flex justify-content-center mt-5 mx-auto">
+    <div class="d-flex justify-content-center my-5 py-5 " *ngIf = "isLoading">
+       <app-loader></app-loader>
+      </div>
+      <div class="col-12 p-2"  *ngIf="error">
+        <div class="text-center alert alert-danger">
+          {{ error }}
+        </div>
+      </div>
+    <div class="card-body   mt-2 " *ngIf = "!isLoading">
+        <form [formGroup]="loginCredential"  (ngSubmit)="handlesubmit()">
+            <div class="mb-3 ">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+            
+                  placeholder="Enter your email"
+                  formControlName="email"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">password</label>
+                <input
+                  type="password"
+                  class="form-control"
+          
+                  placeholder="Enter your password"
+                  formControlName="password"
+                />
+              </div>
+              <div class="text-center">
+               <button class="btn btn-primary">sumbit</button>
+              </div>
+        </form>
+    </div>
+</div>
